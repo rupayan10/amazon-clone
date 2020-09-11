@@ -1,8 +1,9 @@
 import React from 'react';
-import { useStateValue } from '../StateProvider';
+import { useStateValue } from '../../StateProvider';
 import './Checkout.css';
 import CheckoutProduct from './CheckoutProduct';
 import Subtotal from './Subtotal';
+import FlipMove from 'react-flip-move';
 
 function Checkout() {
 	const [{ cart }] = useStateValue();
@@ -17,10 +18,10 @@ function Checkout() {
 				<div>
 					<h2 className='checkout__title'>Your shopping cart</h2>
 
-					<div>
-						{cart?.map((item, index) => (
+					<FlipMove>
+						{cart?.map((item) => (
 							<CheckoutProduct
-								key={index}
+								key={item.id}
 								id={item.id}
 								title={item.title}
 								price={item.price}
@@ -28,7 +29,7 @@ function Checkout() {
 								rating={item.rating}
 							/>
 						))}
-					</div>
+					</FlipMove>
 				</div>
 			</div>
 			<div className='checkout__right'>
